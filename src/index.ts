@@ -423,6 +423,19 @@ function tAfin(evt: any): void{
   imagenSal.imageArray2DtoData(pantalla2, MathImg.tAfin(imagenSal, factores));
 }
 
+let tiempo = 0;
+function actualizarYAplicarDesplazamientoDiagonal():void{
+    tiempo+=0.1; 
+
+
+    var imagenSal: ImageType=new ImageType(pantalla1,imgLocal.getImage());
+
+
+    imagenSal.imageArray2DtoData(pantalla2,MathImg.desplazamientoDiagonal(imagenSal,tiempo,10));
+    requestAnimationFrame(actualizarYAplicarDesplazamientoDiagonal);
+}
+document.getElementById("op-diagonal").addEventListener('click',() =>{ tiempo=0; 
+actualizarYAplicarDesplazamientoDiagonal();}, false);
 lienzo1.addEventListener('mousemove', handleMouse);
  
 lienzo1.addEventListener("mousemove", imgLocal.drawSmallImg);

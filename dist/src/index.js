@@ -387,6 +387,17 @@ function tAfin(evt) {
     var imagenSal = new ImageType(pantalla1, imgLocal.getImage());
     imagenSal.imageArray2DtoData(pantalla2, MathImg.tAfin(imagenSal, factores));
 }
+var tiempo = 0;
+function actualizarYAplicarDesplazamientoDiagonal() {
+    tiempo += 0.1;
+    var imagenSal = new ImageType(pantalla1, imgLocal.getImage());
+    imagenSal.imageArray2DtoData(pantalla2, MathImg.desplazamientoDiagonal(imagenSal, tiempo, 10));
+    requestAnimationFrame(actualizarYAplicarDesplazamientoDiagonal);
+}
+document.getElementById("op-diagonal").addEventListener('click', function () {
+    tiempo = 0;
+    actualizarYAplicarDesplazamientoDiagonal();
+}, false);
 lienzo1.addEventListener('mousemove', handleMouse);
 lienzo1.addEventListener("mousemove", imgLocal.drawSmallImg);
 document.getElementById('files').addEventListener('change', imgLocal.handleFileSelect, false);

@@ -1148,6 +1148,23 @@ var MathImg = /** @class */ (function () {
       */
         return sal;
     };
+    MathImg.desplazamientoDiagonal = function (img, tiempo, velocidad) {
+        var arrImage = img.getArrayImg();
+        var width = img.getWidth();
+        var height = img.getHeight();
+        var s = this.initArray(width, height);
+        for (var i = 0; i < height; i++) {
+            for (var j = 0; j < width; j++) {
+                var offsetX = Math.sin(tiempo + (i + j) * 0.1) * velocidad;
+                var newX = Math.floor(j + offsetX);
+                newX = Math.max(0, Math.min(width - 1, newX));
+                s[0][i][j] = arrImage[0][i][newX];
+                s[1][i][j] = arrImage[1][i][newX];
+                s[2][i][j] = arrImage[2][i][newX];
+            }
+        }
+        return s;
+    };
     return MathImg;
 }());
 export { MathImg };

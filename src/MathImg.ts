@@ -1232,4 +1232,23 @@ export class MathImg {
   */
     return sal;
   }
+
+
+  public static desplazamientoDiagonal(img:ImageType,tiempo: number,velocidad:number):number[][][] {
+    var arrImage= img.getArrayImg();
+    var width=img.getWidth();
+    var height=img.getHeight();
+    var s=this.initArray(width,height);
+    for (let i=0;i<height;i++){
+        for (let j= 0;j<width;j++) {
+            let offsetX=Math.sin(tiempo+(i+j)*0.1)*velocidad; 
+            let newX=Math.floor(j+ offsetX);
+            newX=Math.max(0, Math.min(width-1,newX));
+            s[0][i][j]=arrImage[0][i][newX];
+            s[1][i][j]=arrImage[1][i][newX];
+            s[2][i][j]=arrImage[2][i][newX];
+      }
+     }
+     return s;
+}
 }
