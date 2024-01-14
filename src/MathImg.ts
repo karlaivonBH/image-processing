@@ -1271,4 +1271,25 @@ public static oscilacion(img: ImageType,tiempo:number,frecuencia:number,amplitud
   }
   return s;
 }
+
+public static TableroAjedrez(img: ImageType, divisiones: number): number[][][] {
+  var arrImage=img.getArrayImg();
+  var width=img.getWidth();
+  var height=img.getHeight();
+  var s=this.initArray(width, height);
+  var anchoSeccion=Math.floor(width/divisiones);
+  var altoSeccion=Math.floor(height/divisiones);
+
+  for (let i=0;i<height;i++) {
+      for (let j=0;j<width;j++) {
+          let seccionX=Math.floor(j / anchoSeccion);
+          let seccionY=Math.floor(i / altoSeccion);
+          let nuevoColor=(seccionX + seccionY) % 2 === 0 ? 255 : 0;
+          s[0][i][j]=nuevoColor;
+          s[1][i][j]=nuevoColor;
+          s[2][i][j]=nuevoColor;
+      }
+  }
+  return s;
+}
 }

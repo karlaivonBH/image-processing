@@ -1182,6 +1182,25 @@ var MathImg = /** @class */ (function () {
         }
         return s;
     };
+    MathImg.TableroAjedrez = function (img, divisiones) {
+        var arrImage = img.getArrayImg();
+        var width = img.getWidth();
+        var height = img.getHeight();
+        var s = this.initArray(width, height);
+        var anchoSeccion = Math.floor(width / divisiones);
+        var altoSeccion = Math.floor(height / divisiones);
+        for (var i = 0; i < height; i++) {
+            for (var j = 0; j < width; j++) {
+                var seccionX = Math.floor(j / anchoSeccion);
+                var seccionY = Math.floor(i / altoSeccion);
+                var nuevoColor = (seccionX + seccionY) % 2 === 0 ? 255 : 0;
+                s[0][i][j] = nuevoColor;
+                s[1][i][j] = nuevoColor;
+                s[2][i][j] = nuevoColor;
+            }
+        }
+        return s;
+    };
     return MathImg;
 }());
 export { MathImg };
