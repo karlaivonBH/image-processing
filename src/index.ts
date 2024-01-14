@@ -436,6 +436,19 @@ function actualizarYAplicarDesplazamientoDiagonal():void{
 }
 document.getElementById("op-diagonal").addEventListener('click',() =>{ tiempo=0; 
 actualizarYAplicarDesplazamientoDiagonal();}, false);
+
+
+let tiempo1= 0;
+function Oscilacion(): void {
+     tiempo1+=0.3;
+    var imagenSal: ImageType=new ImageType(pantalla1,imgLocal.getImage());
+    imagenSal.imageArray2DtoData(pantalla2,MathImg.oscilacion(imagenSal, tiempo1,2,20)); // Ajusta la frecuencia y amplitud según sea necesario
+    requestAnimationFrame( Oscilacion);
+}
+
+document.getElementById("op-oscilacion").addEventListener('click', () => { tiempo1 = 0; Oscilacion(); }, false);
+
+
 lienzo1.addEventListener('mousemove', handleMouse);
  
 lienzo1.addEventListener("mousemove", imgLocal.drawSmallImg);

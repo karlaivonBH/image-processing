@@ -1165,6 +1165,23 @@ var MathImg = /** @class */ (function () {
         }
         return s;
     };
+    MathImg.oscilacion = function (img, tiempo, frecuencia, amplitud) {
+        var arrImage = img.getArrayImg();
+        var width = img.getWidth();
+        var height = img.getHeight();
+        var s = this.initArray(width, height);
+        for (var i = 0; i < height; i++) {
+            for (var j = 0; j < width; j++) {
+                var offsetY = Math.sin(tiempo + i * 0.1 * frecuencia) * amplitud;
+                var newY = Math.floor(i + offsetY);
+                newY = Math.max(0, Math.min(height - 1, newY));
+                s[0][i][j] = arrImage[0][newY][j];
+                s[1][i][j] = arrImage[1][newY][j];
+                s[2][i][j] = arrImage[2][newY][j];
+            }
+        }
+        return s;
+    };
     return MathImg;
 }());
 export { MathImg };

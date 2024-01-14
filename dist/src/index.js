@@ -398,6 +398,14 @@ document.getElementById("op-diagonal").addEventListener('click', function () {
     tiempo = 0;
     actualizarYAplicarDesplazamientoDiagonal();
 }, false);
+var tiempo1 = 0;
+function Oscilacion() {
+    tiempo1 += 0.3;
+    var imagenSal = new ImageType(pantalla1, imgLocal.getImage());
+    imagenSal.imageArray2DtoData(pantalla2, MathImg.oscilacion(imagenSal, tiempo1, 2, 20)); // Ajusta la frecuencia y amplitud según sea necesario
+    requestAnimationFrame(Oscilacion);
+}
+document.getElementById("op-oscilacion").addEventListener('click', function () { tiempo1 = 0; Oscilacion(); }, false);
 lienzo1.addEventListener('mousemove', handleMouse);
 lienzo1.addEventListener("mousemove", imgLocal.drawSmallImg);
 document.getElementById('files').addEventListener('change', imgLocal.handleFileSelect, false);
