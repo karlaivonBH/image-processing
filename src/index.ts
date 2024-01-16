@@ -476,6 +476,16 @@ function espejo():void {
 
 document.getElementById("op-espejo").addEventListener('click',espejo,false);
 
+let tiempo2=0;
+function Zoom(): void {
+    tiempo2+=0.03;
+    var imagenSal: ImageType=new ImageType(pantalla1,imgLocal.getImage());
+    imagenSal.imageArray2DtoData(pantalla2, MathImg.zoom(imagenSal, tiempo2, 0.5)); 
+    requestAnimationFrame(Zoom);
+}
+
+document.getElementById("op-zoomContinuo").addEventListener('click', () => {tiempo2 = 0; Zoom();}, false);
+
 lienzo1.addEventListener('mousemove', handleMouse);
  
 lienzo1.addEventListener("mousemove", imgLocal.drawSmallImg);

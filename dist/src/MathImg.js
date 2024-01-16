@@ -1249,6 +1249,25 @@ var MathImg = /** @class */ (function () {
         }
         return s;
     };
+    MathImg.zoom = function (img, tiempo, velocidad) {
+        var arrImage = img.getArrayImg();
+        var width = img.getWidth();
+        var height = img.getHeight();
+        var s = this.initArray(width, height);
+        var factorZoom = Math.sin(tiempo * velocidad) * 0.2 + 1.0;
+        for (var i = 0; i < height; i++) {
+            for (var j = 0; j < width; j++) {
+                var origX = j / factorZoom;
+                var origY = i / factorZoom;
+                if (origX >= 0 && origX < width && origY >= 0 && origY < height) {
+                    s[0][i][j] = arrImage[0][Math.floor(origY)][Math.floor(origX)];
+                    s[1][i][j] = arrImage[1][Math.floor(origY)][Math.floor(origX)];
+                    s[2][i][j] = arrImage[2][Math.floor(origY)][Math.floor(origX)];
+                }
+            }
+        }
+        return s;
+    };
     return MathImg;
 }());
 export { MathImg };

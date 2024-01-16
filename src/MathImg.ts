@@ -1348,4 +1348,23 @@ public static espejo(img: ImageType): number[][][] {
   return s;
 }
 
+public static zoom(img: ImageType, tiempo:number,velocidad:number):number[][][] {
+  var arrImage=img.getArrayImg();
+  var width=img.getWidth();
+  var height=img.getHeight();
+  var s=this.initArray(width, height);
+  let factorZoom=Math.sin(tiempo*velocidad)*0.2+1.0; 
+  for(let i=0;i<height;i++){
+        for(let j=0;j<width;j++){
+          let origX=j/factorZoom;
+          let origY=i/factorZoom;
+          if(origX>=0&&origX<width&&origY>=0&&origY<height){
+                s[0][i][j]=arrImage[0][Math.floor(origY)][Math.floor(origX)];
+                s[1][i][j]=arrImage[1][Math.floor(origY)][Math.floor(origX)];
+                s[2][i][j]=arrImage[2][Math.floor(origY)][Math.floor(origX)];
+          }
+      }
+  }
+  return s;
+}
 }
