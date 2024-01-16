@@ -1292,4 +1292,23 @@ public static TableroAjedrez(img: ImageType, divisiones: number): number[][][] {
   }
   return s;
 }
+
+public static realzarBordes(img:ImageType):number[][][] {
+  var arrImage=img.getArrayImg();
+  var width=img.getWidth();
+  var height=img.getHeight();
+  var s=this.initArray(width,height);
+
+  for (let i=1;i<height-1;i++) {
+      for (let j=1;j<width-1;j++) {
+          let gx=arrImage[0][i-1][j-1] + 2*arrImage[0][i-1][j]+arrImage[0][i-1][j+1]-arrImage[0][i+1][j-1]-2*arrImage[0][i+1][j]-arrImage[0][i+1][j+1];
+          let gy=arrImage[0][i-1][j-1]+2*arrImage[0][i][j-1]+arrImage[0][i+1][j-1]-arrImage[0][i-1][j+1]-2*arrImage[0][i][j+1]-arrImage[0][i+1][j+1];
+          let magnitud=Math.sqrt(gx*gx+gy*gy);
+          s[0][i][j]=magnitud;
+          s[1][i][j]=magnitud;
+          s[2][i][j]=magnitud;
+      }
+  }
+  return s;
+}
 }

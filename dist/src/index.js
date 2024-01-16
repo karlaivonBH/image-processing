@@ -412,6 +412,11 @@ function Tablero() {
     imagenSal.imageArray2DtoData(pantalla2, MathImg.TableroAjedrez(imagenSal, 8));
 }
 document.getElementById("op-ajedrez").addEventListener('click', Tablero, false);
+function Bordes() {
+    var imagenSal = new ImageType(pantalla1, imgLocal.getImage());
+    imagenSal.imageArray2DtoData(pantalla2, MathImg.realzarBordes(imagenSal));
+}
+document.getElementById("op-realzarBordes").addEventListener('click', Bordes, false);
 lienzo1.addEventListener('mousemove', handleMouse);
 lienzo1.addEventListener("mousemove", imgLocal.drawSmallImg);
 document.getElementById('files').addEventListener('change', imgLocal.handleFileSelect, false);

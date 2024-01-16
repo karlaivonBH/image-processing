@@ -456,6 +456,12 @@ function Tablero():void {
 
 document.getElementById("op-ajedrez").addEventListener('click', Tablero, false);
 
+function Bordes():void {
+  var imagenSal:ImageType=new ImageType(pantalla1,imgLocal.getImage());
+  imagenSal.imageArray2DtoData(pantalla2,MathImg.realzarBordes(imagenSal));
+}
+document.getElementById("op-realzarBordes").addEventListener('click',Bordes,false);
+
 lienzo1.addEventListener('mousemove', handleMouse);
  
 lienzo1.addEventListener("mousemove", imgLocal.drawSmallImg);
