@@ -1235,6 +1235,20 @@ var MathImg = /** @class */ (function () {
         }
         return s;
     };
+    MathImg.espejo = function (img) {
+        var arrImage = img.getArrayImg();
+        var width = img.getWidth();
+        var height = img.getHeight();
+        var s = this.initArray(width, height);
+        for (var i = 0; i < height; i++) {
+            for (var j = 0; j < width; j++) {
+                s[0][i][j] = arrImage[0][i][width - j - 1];
+                s[1][i][j] = arrImage[1][i][width - j - 1];
+                s[2][i][j] = arrImage[2][i][width - j - 1];
+            }
+        }
+        return s;
+    };
     return MathImg;
 }());
 export { MathImg };

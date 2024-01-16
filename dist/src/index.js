@@ -422,6 +422,11 @@ function difuminar() {
     imagenSal.imageArray2DtoData(pantalla2, MathImg.difuminar(imagenSal));
 }
 document.getElementById("op-difuminar").addEventListener('click', difuminar, false);
+function espejo() {
+    var imagenSal = new ImageType(pantalla1, imgLocal.getImage());
+    imagenSal.imageArray2DtoData(pantalla2, MathImg.espejo(imagenSal));
+}
+document.getElementById("op-espejo").addEventListener('click', espejo, false);
 lienzo1.addEventListener('mousemove', handleMouse);
 lienzo1.addEventListener("mousemove", imgLocal.drawSmallImg);
 document.getElementById('files').addEventListener('change', imgLocal.handleFileSelect, false);
