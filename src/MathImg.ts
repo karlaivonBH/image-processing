@@ -1311,4 +1311,25 @@ public static realzarBordes(img:ImageType):number[][][] {
   }
   return s;
 }
+public static difuminar(img:ImageType):number[][][] {
+  var arrImage=img.getArrayImg();
+  var width=img.getWidth();
+  var height=img.getHeight();
+  var s=this.initArray(width, height);
+
+  for (let i=1;i<height-1;i++) {
+      for (let j=1;j<width-1;j++) {
+          let promedio= (
+            arrImage[0][i-1][j-1]+arrImage[0][i-1][j]+arrImage[0][i-1][j+1]+
+            arrImage[0][i][j-1]+arrImage[0][i][j]+arrImage[0][i][j+1]+
+            arrImage[0][i+1][j-1]+arrImage[0][i+1][j]+arrImage[0][i+1][j+1]
+          ) / 9;
+          s[0][i][j]=promedio;
+          s[1][i][j]=promedio;
+          s[2][i][j]=promedio;
+      }
+  }
+  return s;
+}
+
 }

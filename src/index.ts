@@ -462,6 +462,12 @@ function Bordes():void {
 }
 document.getElementById("op-realzarBordes").addEventListener('click',Bordes,false);
 
+function difuminar():void {
+  var imagenSal: ImageType = new ImageType(pantalla1, imgLocal.getImage());
+  imagenSal.imageArray2DtoData(pantalla2, MathImg.difuminar(imagenSal));
+}
+document.getElementById("op-difuminar").addEventListener('click',difuminar,false);
+
 lienzo1.addEventListener('mousemove', handleMouse);
  
 lienzo1.addEventListener("mousemove", imgLocal.drawSmallImg);

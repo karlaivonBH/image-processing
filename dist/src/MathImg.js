@@ -1218,6 +1218,23 @@ var MathImg = /** @class */ (function () {
         }
         return s;
     };
+    MathImg.difuminar = function (img) {
+        var arrImage = img.getArrayImg();
+        var width = img.getWidth();
+        var height = img.getHeight();
+        var s = this.initArray(width, height);
+        for (var i = 1; i < height - 1; i++) {
+            for (var j = 1; j < width - 1; j++) {
+                var promedio = (arrImage[0][i - 1][j - 1] + arrImage[0][i - 1][j] + arrImage[0][i - 1][j + 1] +
+                    arrImage[0][i][j - 1] + arrImage[0][i][j] + arrImage[0][i][j + 1] +
+                    arrImage[0][i + 1][j - 1] + arrImage[0][i + 1][j] + arrImage[0][i + 1][j + 1]) / 9;
+                s[0][i][j] = promedio;
+                s[1][i][j] = promedio;
+                s[2][i][j] = promedio;
+            }
+        }
+        return s;
+    };
     return MathImg;
 }());
 export { MathImg };
