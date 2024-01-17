@@ -435,6 +435,14 @@ function Zoom() {
     requestAnimationFrame(Zoom);
 }
 document.getElementById("op-zoomContinuo").addEventListener('click', function () { tiempo2 = 0; Zoom(); }, false);
+var tiempo3 = 0;
+function Temblor() {
+    tiempo3 += 0.08;
+    var imagenSal = new ImageType(pantalla1, imgLocal.getImage());
+    imagenSal.imageArray2DtoData(pantalla2, MathImg.temblor(imagenSal, tiempo3, 10, 5));
+    requestAnimationFrame(Temblor);
+}
+document.getElementById("op-temblor").addEventListener('click', function () { tiempo3 = 0; Temblor(); }, false);
 lienzo1.addEventListener('mousemove', handleMouse);
 lienzo1.addEventListener("mousemove", imgLocal.drawSmallImg);
 document.getElementById('files').addEventListener('change', imgLocal.handleFileSelect, false);

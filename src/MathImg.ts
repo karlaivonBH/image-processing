@@ -1367,4 +1367,24 @@ public static zoom(img: ImageType, tiempo:number,velocidad:number):number[][][] 
   }
   return s;
 }
+public static temblor(img: ImageType,tiempo:number,velocidad:number,amplitud:number):number[][][] {
+  var arrImage=img.getArrayImg();
+  var width=img.getWidth();
+  var height=img.getHeight();
+  var s=this.initArray(width, height);
+  for(let i=0;i<height;i++){
+        for(let j=0;j<width;j++){
+            let offsetX=Math.sin(tiempo*velocidad)*amplitud;
+            let offsetY=Math.cos(tiempo*velocidad)*amplitud;
+            let newX=Math.floor(j+offsetX);
+            let newY=Math.floor(i+offsetY);
+            newX=Math.max(0,Math.min(width-1,newX));
+            newY=Math.max(0,Math.min(height-1,newY));
+            s[0][i][j]=arrImage[0][newY][newX];
+            s[1][i][j]=arrImage[1][newY][newX];
+            s[2][i][j]=arrImage[2][newY][newX];
+        }
+  }
+  return s;
+}
 }

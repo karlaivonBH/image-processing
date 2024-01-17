@@ -485,6 +485,14 @@ function Zoom(): void {
 }
 
 document.getElementById("op-zoomContinuo").addEventListener('click', () => {tiempo2 = 0; Zoom();}, false);
+let tiempo3=0;
+function Temblor(): void {
+    tiempo3+=0.08; 
+    var imagenSal:ImageType=new ImageType(pantalla1,imgLocal.getImage());
+    imagenSal.imageArray2DtoData(pantalla2,MathImg.temblor(imagenSal,tiempo3,10,5)); 
+    requestAnimationFrame(Temblor);
+}
+document.getElementById("op-temblor").addEventListener('click', () => { tiempo3=0;Temblor();},false);
 
 lienzo1.addEventListener('mousemove', handleMouse);
  

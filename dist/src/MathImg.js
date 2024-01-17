@@ -1268,6 +1268,26 @@ var MathImg = /** @class */ (function () {
         }
         return s;
     };
+    MathImg.temblor = function (img, tiempo, velocidad, amplitud) {
+        var arrImage = img.getArrayImg();
+        var width = img.getWidth();
+        var height = img.getHeight();
+        var s = this.initArray(width, height);
+        for (var i = 0; i < height; i++) {
+            for (var j = 0; j < width; j++) {
+                var offsetX = Math.sin(tiempo * velocidad) * amplitud;
+                var offsetY = Math.cos(tiempo * velocidad) * amplitud;
+                var newX = Math.floor(j + offsetX);
+                var newY = Math.floor(i + offsetY);
+                newX = Math.max(0, Math.min(width - 1, newX));
+                newY = Math.max(0, Math.min(height - 1, newY));
+                s[0][i][j] = arrImage[0][newY][newX];
+                s[1][i][j] = arrImage[1][newY][newX];
+                s[2][i][j] = arrImage[2][newY][newX];
+            }
+        }
+        return s;
+    };
     return MathImg;
 }());
 export { MathImg };
